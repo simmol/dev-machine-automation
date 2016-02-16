@@ -1,0 +1,22 @@
+# vim:ft=ansible:
+- hosts: all
+  become: yes
+  connection: local
+  roles: 
+    - franklinkim.users-oh-my-zsh
+    - powerline
+    - vim
+  vars:
+    vim_users: simmol
+    vim_package: vim 
+    vim_plugins:
+      - "scrooloose/nerdtree"
+      - "tpope/vim-fugitive"
+      - "klen/python-mode"
+    vim_custom_config_file: ~
+    users:
+      - name: simmol
+        username: simmol
+        authorized_keys: []
+        oh_my_zsh:
+          theme: agnoster

@@ -1,0 +1,14 @@
+# vim:ft=ansible:
+---
+# Install and configure Vim 
+
+- include: install.yml
+  tags:
+    - vim
+    - install
+    - vim-install
+- include: config.yml
+  tags:
+    - vim
+    - config
+    - vim-config

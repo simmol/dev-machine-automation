@@ -1,0 +1,3 @@
+---
+- name: Istalling package
+  pip: name='git+git://github.com/Lokaltog/powerline' editable=False
