@@ -1,0 +1,16 @@
+---
+
+- name: Install python 2.7 related packages
+  apt: "name={{item}} state=installed"
+  with_items:
+    - build-essential
+    - python-dev
+    - python-setuptools
+    - python-pip
+
+- name: Upgrade Pip to lattest version 
+  become: yes
+  pip: name="pip" state="latest" 
+
+- name: Install Virtualenv
+  pip: name="virtualenv"

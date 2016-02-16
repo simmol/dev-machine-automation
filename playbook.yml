@@ -3,6 +3,7 @@
   become: yes
   connection: local
   roles: 
+    - python
     - franklinkim.users-oh-my-zsh
     - powerline
     - vim
