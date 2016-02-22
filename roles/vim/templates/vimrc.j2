@@ -3,6 +3,19 @@
 set nocompatible
 filetype off
 
+set encoding=utf-8
+set title                " change the terminal's title
+set history=1000         " remember more commands and search history
+set undolevels=1000      " use many muchos levels of undo
+set hidden " Enable open new buffer without the need to save current buffer
+
+" Paste mode
+nnoremap <F2> :set invpaste paste?<CR>
+set pastetoggle=<F2>
+set showmode
+
+syntax on
+
 " vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -27,7 +40,7 @@ set guifont=Source\ Code\ Pro\ for\ Powerline\ Semibold\ 14
 set laststatus=2
 
 " NerdTree
-map <F2> :NERDTreeToggle<CR>
+map <F3> :NERDTreeToggle<CR>
 
 " Python-mode
 " Activate rope
@@ -37,11 +50,11 @@ map <F2> :NERDTreeToggle<CR>
 " <Ctrl-c>g     Rope goto definition
 " <Ctrl-c>d     Rope show documentation
 " <Ctrl-c>f     Rope find occurrences
-" <Leader>b     Set, unset breakpoint (g:pymode_breakpoint enabled)
-" [[            Jump on previous class or function (normal, visual, operator modes)
-" ]]            Jump on next class or function (normal, visual, operator modes)
-" [M            Jump on previous class or method (normal, visual, operator modes)
-" ]M            Jump on next class or method (normal, visual, operator modes)
+" <Leader>b     Set, unset breakpoint ( g:pymode_breakpoint enabled )
+" [[            Jump on previous class or function ( normal, visual, operator modes )
+" ]]            Jump on next class or function ( normal, visual, operator modes )
+" [M            Jump on previous class or method ( normal, visual, operator modes )
+" ]M            Jump on next class or method ( normal, visual, operator modes )
 let g:pymode_rope = 0
 
 " Documentation
@@ -81,9 +94,55 @@ au BufNewFile,BufRead *.py
     \ set fileformat=unix
 
 " identation for other files
-au BufNewFile,BufRead *.js, *.html, *.css
+au BufNewFile,BufRead *.js, *.html, *.css, *.*
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2
+
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+" Cleanup files from spaces, tabs etc
+" Show tabs and trailing spaces so I can remove them
+set list
+set listchars=tab:»·,trail:·,extends:#
+
+" Remove trailing spaces
+function! RemoveTrailingSpaces()
+  %s/\s\+$//e
+endfunction
+
+function! RemoveTrailingEndOfLines()
+  %s/
+\+$//e
+endfunction
+
+" Convert tabs to spaces
+function! ConvertTabsToSpaces()
+  %retab
+endfunction
+
+function! PutSpacesForFunctions()
+  %s/\zs(\ze\(\'\|\"\|\w\)/(\ /ge
+  %s/\(\w\|\'\|\"\|\]\|)\)\zs )\ze/ )/ge
+endfunction
+
+function! CleanFile()
+  call ConvertTabsToSpaces()
+  call RemoveTrailingSpaces()
+  call RemoveTrailingEndOfLines()
+  call PutSpacesForFunctions()
+endfunction
+
+" Key binding F5 to clean up file
+nnoremap <silent> <F5> :let _s=@/<Bar>:call CleanFile()<CR>
+
+" bind Alt+<arrows> keys to move around buffers
+noremap <a-Left> :bp<CR>
+noremap <a-Right> :bn<CR>
 
 source ~/.vim/config/*.vim

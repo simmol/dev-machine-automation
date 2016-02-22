@@ -7,6 +7,11 @@
     - franklinkim.users-oh-my-zsh
     - powerline
     - vim
+  tasks:
+    - name: append GO directory to path
+      lineinfile: dest=/home/{{ vim_users }}/.zshrc line="export PATH=$PATH:/usr/local/go/bin"
+    - name: add GO work directory
+      lineinfile: dest=/home/{{ vim_users }}/.zshrc line="export GOPATH=/home/simmol/projects/go"
   vars:
     vim_users: simmol
     vim_package: vim 
@@ -14,6 +19,10 @@
       - "scrooloose/nerdtree"
       - "tpope/vim-fugitive"
       - "klen/python-mode"
+      - "fatih/vim-go"
+      - "Shougo/neocomplete"
+      - "weynhamz/vim-plugin-minibufexpl"
+      #      - "Valloric/YouCompleteMe"
     vim_custom_config_file: ~
     users:
       - name: simmol
