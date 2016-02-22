@@ -94,10 +94,14 @@ au BufNewFile,BufRead *.py
     \ set fileformat=unix
 
 " identation for other files
-au BufNewFile,BufRead *.js, *.html, *.css, *.*
+au BufNewFile,BufRead *.js, *.html, *.css, *.yml
     \ set tabstop=2
     \ set softtabstop=2
     \ set shiftwidth=2
+    \ set expandtab
+    \ set autoindent
+    \ set fileformat=unix
+
 
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1

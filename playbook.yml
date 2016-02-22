@@ -2,7 +2,7 @@
 - hosts: all
   become: yes
   connection: local
-  roles: 
+  roles:
     - python
     - franklinkim.users-oh-my-zsh
     - powerline
@@ -14,7 +14,7 @@
       lineinfile: dest=/home/{{ vim_users }}/.zshrc line="export GOPATH=/home/simmol/projects/go"
   vars:
     vim_users: simmol
-    vim_package: vim 
+    vim_package: vim
     vim_plugins:
       - "scrooloose/nerdtree"
       - "tpope/vim-fugitive"
