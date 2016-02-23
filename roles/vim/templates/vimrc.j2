@@ -14,6 +14,7 @@ nnoremap <F2> :set invpaste paste?<CR>
 set pastetoggle=<F2>
 set showmode
 
+let python_highlight_all=1
 syntax on
 
 " vundle
@@ -84,7 +85,7 @@ let g:pymode_syntax_space_errors = g:pymode_syntax_all
 let g:pymode_folding = 0
 
 " PEP8 identation python files
-au BufNewFile,BufRead *.py
+au BufNewFile,BufRead *.py, *.go
     \ set tabstop=4
     \ set softtabstop=4
     \ set shiftwidth=4
@@ -109,6 +110,9 @@ let g:go_highlight_structs = 1
 let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
+
+" Enable autocomplete
+let g:neocomplete#enable_at_startup = 1
 
 " Cleanup files from spaces, tabs etc
 " Show tabs and trailing spaces so I can remove them
@@ -139,7 +143,7 @@ function! CleanFile()
   call ConvertTabsToSpaces()
   call RemoveTrailingSpaces()
   call RemoveTrailingEndOfLines()
-  call PutSpacesForFunctions()
+"  call PutSpacesForFunctions()
 endfunction
 
 " Key binding F5 to clean up file

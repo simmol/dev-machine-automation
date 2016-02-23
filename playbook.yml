@@ -17,6 +17,7 @@
     vim_package: vim
     vim_plugins:
       - "scrooloose/nerdtree"
+      - "jistr/vim-nerdtree-tabs"
       - "tpope/vim-fugitive"
       - "klen/python-mode"
       - "fatih/vim-go"
