@@ -8,9 +8,12 @@
     - python-setuptools
     - python-pip
 
-- name: Upgrade Pip to lattest version 
+- name: Upgrade Pip to lattest version
   become: yes
-  pip: name="pip" state="latest" 
+  pip: name="pip" state="latest"
 
 - name: Install Virtualenv
   pip: name="virtualenv"
+
+- name: Install Virtualenvwrapper
+  pip: name="virtualenvwrapper"
