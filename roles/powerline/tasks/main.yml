@@ -1,3 +1,9 @@
 ---
 - name: Istalling package
   pip: name='git+git://github.com/Lokaltog/powerline' editable=False
+
+- name: Clone powerline fonts
+  git: repo='https://github.com/powerline/fonts.git' dest='/tmp/powerline-fonts' accept_hostkey=True
+
+- name: Install fonts
+  command: /tmp/powerline-fonts/install.sh

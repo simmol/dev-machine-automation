@@ -7,11 +7,16 @@
     - franklinkim.users-oh-my-zsh
     - powerline
     - vim
+    - docker-debian
   tasks:
     - name: append GO directory to path
       lineinfile: dest=/home/{{ vim_users }}/.zshrc line="export PATH=$PATH:/usr/local/go/bin"
     - name: add GO work directory
       lineinfile: dest=/home/{{ vim_users }}/.zshrc line="export GOPATH=/home/simmol/projects/go"
+    - name: Git author name setting
+      command: git config --global user.name "Pavlin Angelov"
+    - name: Git author email setting
+      command: git config --global user.email fonix.simmol@gmail.com
   vars:
     vim_users: simmol
     vim_package: vim

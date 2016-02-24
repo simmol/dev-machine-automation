@@ -2,3 +2,5 @@
 
 - name: install package 
   action: "{{ ansible_pkg_mgr }} pkg={{ vim_package }} state=present"
+- name: install vim-gnome 
+  action: "{{ ansible_pkg_mgr }} pkg=vim-gnome state=present"
