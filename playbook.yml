@@ -13,6 +13,8 @@
       lineinfile: dest=/home/{{ vim_users }}/.zshrc line="export PATH=$PATH:/usr/local/go/bin"
     - name: add GO work directory
       lineinfile: dest=/home/{{ vim_users }}/.zshrc line="export GOPATH=/home/simmol/projects/go"
+    - name: Make projects directory
+      file: path=/home/{{ vim_users }}/Projects state=directory owner="{{ vim_users }}" group="{{ vim_users }}"
   vars:
     vim_users: simmol
     vim_package: vim
@@ -24,7 +26,8 @@
       - "fatih/vim-go"
       - "Shougo/neocomplete"
       - "weynhamz/vim-plugin-minibufexpl"
-      #      - "Valloric/YouCompleteMe"
+      - "vim-scripts/indentpython.vim"
+      - "scrooloose/syntastic"
     vim_custom_config_file: ~
     users:
       - name: simmol
