@@ -1,6 +1,7 @@
 ---
 
 - name: Install python 2.7 related packages
+  become: yes
   apt: "name={{item}} state=installed"
   with_items:
     - build-essential
@@ -13,7 +14,9 @@
   pip: name="pip" state="latest"
 
 - name: Install Virtualenv
+  become: yes
   pip: name="virtualenv"
 
 - name: Install Virtualenvwrapper
+  become: yes
   pip: name="virtualenvwrapper"

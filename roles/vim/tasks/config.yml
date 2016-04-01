@@ -11,7 +11,7 @@
   become: yes
   become_user: "{{ item }}"
   when: "item in home_dirs.stdout_lines"
-  with_items: vim_users
+  with_items: "{{ vim_users }}"
 
 - name: ensure vim custom config directory exists
   file: path="/home/{{ item }}/.vim/config"
@@ -20,7 +20,7 @@
   become: yes
   become_user: "{{ item }}"
   when: "item in home_dirs.stdout_lines"
-  with_items: vim_users
+  with_items: "{{ vim_users }}"
 
 - name: ensure vim plugin manager is installed
   git: repo=https://github.com/gmarik/vundle
@@ -28,7 +28,7 @@
        version=master
   become_user: "{{ item }}"
   when: "item in home_dirs.stdout_lines"
-  with_items: vim_users
+  with_items: "{{ vim_users }}"
 
 - name: ensure vim configuration is installed
   template: src=vimrc.j2
@@ -36,7 +36,7 @@
   become: yes
   become_user: "{{ item }}"
   when: "item in home_dirs.stdout_lines"
-  with_items: vim_users
+  with_items: "{{ vim_users }}"
 
 - name: ensure empty custom vim configuration is installed
   copy: content=""
@@ -45,7 +45,7 @@
   become: yes
   become_user: "{{ item }}"
   when: "vim_custom_config_file is none and item in home_dirs.stdout_lines"
-  with_items: vim_users
+  with_items: "{{ vim_users }}"
 
 - name: ensure defined custom vim configuration is installed
   copy: src="{{ vim_custom_config_file }}"
@@ -53,7 +53,7 @@
   become: yes
   become_user: "{{ item }}"
   when: "vim_custom_config_file is not none and item in home_dirs.stdout_lines"
-  with_items: vim_users
+  with_items: "{{ vim_users }}"
 
 - name: ensure vim plugins are installed
   shell: "vim +PluginInstall! +qall"
@@ -61,4 +61,4 @@
   become: yes
   become_user: "{{ item }}"
   when: "item in home_dirs.stdout_lines"
-  with_items: vim_users
+  with_items: "{{ vim_users }}"

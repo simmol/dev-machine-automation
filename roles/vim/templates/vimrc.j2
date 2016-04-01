@@ -1,6 +1,7 @@
 " {{ ansible_managed }} "
 
 set nocompatible
+set autochdir
 filetype off
 
 set encoding=utf-8
@@ -57,6 +58,7 @@ map <F3> :NERDTreeToggle<CR>
 " [M            Jump on previous class or method ( normal, visual, operator modes )
 " ]M            Jump on next class or method ( normal, visual, operator modes )
 let g:pymode_rope = 1
+let g:pymode_options_max_line_length = 120
 
 " Documentation
 let g:pymode_doc = 1
@@ -65,6 +67,9 @@ let g:pymode_doc_key = 'K'
 "Linting
 let g:pymode_lint = 1
 let g:pymode_lint_checker = "pyflakes,pep8"
+let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
+let g:pymode_lint_options_pyflakes = {'max-line-length': g:pymode_options_max_line_length}
+
 " Auto check on save
 let g:pymode_lint_write = 1
 

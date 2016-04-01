@@ -6,4 +6,5 @@
   git: repo='https://github.com/powerline/fonts.git' dest='/tmp/powerline-fonts' accept_hostkey=True
 
 - name: Install fonts
+  become: yes
   command: /tmp/powerline-fonts/install.sh

@@ -1,0 +1,24 @@
+# vim:ft=ansible:
+- hosts: all
+  become: yes
+  connection: local
+  roles:
+    - vim
+  vars:
+    vim_users: simmol
+    vim_package: vim
+    vim_plugins:
+      - "scrooloose/nerdtree"
+      - "jistr/vim-nerdtree-tabs"
+      - "tpope/vim-fugitive"
+      - "klen/python-mode"
+      - "fatih/vim-go"
+      - "Shougo/neocomplete"
+      - "weynhamz/vim-plugin-minibufexpl"
+      - "vim-scripts/indentpython.vim"
+      - "scrooloose/syntastic"
+    vim_custom_config_file: ~
+    users:
+      - name: simmol
+        username: simmol
+        authorized_keys: []
