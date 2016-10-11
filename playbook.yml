@@ -9,10 +9,12 @@
     - vim
     - docker-debian
   tasks:
-    - name: append GO directory to path
+    - name: append GO bin directory to path
       lineinfile: dest=/home/{{ vim_users }}/.zshrc line="export PATH=$PATH:/usr/local/go/bin"
     - name: add GO work directory
       lineinfile: dest=/home/{{ vim_users }}/.zshrc line="export GOPATH=/home/simmol/projects/go"
+    - name: add GOCD command
+        lineinfile: dest=/home/{{ vim_users }}/.zshrc line="gocd () { cd `go list -f '{{.Dir}}' $1` }"
     - name: Make projects directory
       file: path=/home/{{ vim_users }}/Projects state=directory owner="{{ vim_users }}" group="{{ vim_users }}"
   vars:
